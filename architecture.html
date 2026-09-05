@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PayRecover AI — Explainable Revenue Recovery Agent</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: {
+      primaryColor: '#e7f3ff', primaryTextColor: '#06245c', primaryBorderColor: '#238cff',
+      lineColor: '#3978b8', secondaryColor: '#e9fbf4', tertiaryColor: '#fff3df',
+      fontFamily: 'Inter, Arial, sans-serif'
+    }});
+  </script>
+  <style>
+    :root { color-scheme: light; --navy:#061a4d; --blue:#238cff; --cyan:#18c9e8; --ink:#09275f; --paper:#f4f8ff; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--ink); font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at 82% 0%, #d8f5ff, transparent 30%), linear-gradient(135deg,#f7fbff,#eaf3ff 56%,#f8fcff); }
+    .shell { max-width:1680px; margin:auto; padding:54px 42px 100px; }
+    .hero { position:relative; overflow:hidden; padding:58px 64px; border-radius:36px; color:white; background:linear-gradient(120deg,#041541,#082d76 52%,#087eb8); box-shadow:0 34px 90px #174e9340, inset 0 1px #ffffff55; }
+    .hero:after { content:""; position:absolute; width:430px; height:430px; right:-130px; top:-230px; border:70px solid #76d5ff22; border-radius:50%; }
+    h1 { position:relative; z-index:1; margin:0; font-size:clamp(48px,7vw,104px); letter-spacing:-4px; line-height:.94; }
+    .hero p { position:relative; z-index:1; max-width:820px; margin:24px 0 0; color:#cfe8ff; font-size:22px; line-height:1.5; }
+    .eyebrow { position:relative; z-index:1; display:inline-block; margin-bottom:24px; padding:11px 16px; border:1px solid #9edbff66; border-radius:999px; color:#bfe8ff; font-size:14px; font-weight:850; letter-spacing:1.4px; }
+    section { margin-top:44px; padding:38px; border:1px solid #c6dcf4; border-radius:30px; background:#ffffffd9; box-shadow:0 24px 60px #1f599e20, inset 0 1px #fff; }
+    h2 { margin:0 0 24px; font-size:34px; letter-spacing:-1px; color:#08275d; }
+    .mermaid { overflow:auto; padding:22px; border-radius:20px; background:linear-gradient(145deg,#fafdff,#edf6ff); box-shadow:inset 0 1px #fff; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { min-height:150px; padding:24px; border-radius:21px; border:1px solid #c8def4; background:linear-gradient(145deg,#fff,#edf7ff); box-shadow:0 14px 30px #1f599e12, inset 0 1px #fff; transition:transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform:translateY(-6px); box-shadow:0 22px 42px #1f599e22, inset 0 1px #fff; }
+    .card b { display:block; margin-bottom:12px; color:#0c4f9e; font-size:19px; }
+    .card span { color:#547195; font-size:17px; line-height:1.5; }
+    footer { margin-top:44px; padding:28px; border-radius:24px; color:#cde7ff; text-align:center; font-size:16px; background:linear-gradient(115deg,#061a4d,#0a347f 58%,#087eb8); box-shadow:0 22px 48px #04184430; }
+    @media(max-width:850px){ .shell{padding:22px 14px 60px}.hero{padding:36px 26px}.hero p{font-size:17px}section{padding:22px;border-radius:23px}h2{font-size:28px}.grid{grid-template-columns:1fr}.card{min-height:auto}.card span{font-size:15px} }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero"><div class="eyebrow">PAYRECOVER AI · SYSTEM ARCHITECTURE</div><h1>PayRecover AI</h1><p>Explainable Revenue Recovery Agent for failed payment detection, safe execution, customer recovery, and a complete audit trail.</p></header>
+    <section><h2>System Overview</h2><div class="mermaid">
+flowchart TB
+    subgraph UI[Presentation Layer]
+        Browser[Browser]
+        Dashboard[Streamlit Dashboard]
+        Navigation[Navigation and views]
+        Charts[Metrics charts and tables]
+        Controls[Refresh and recovery controls]
+    end
+    subgraph CORE[Recovery Intelligence]
+        Pipeline[run_pipeline.py\nFour-stage orchestration]
+        Decision[decision_engine.py\nSeven explainable rules]
+        Rules[stopping_rules.py\nFresh safety checks]
+        Tracker[outcome_tracker.py\nRecovery attribution]
+    end
+    subgraph CHANNELS[Execution Channels]
+        Retry[Auto Retry\nSilent gateway retry]
+        WhatsApp[WhatsApp\nPayment-link nudge]
+        Voice[Voice Call\nPromise to pay]
+        DryRun[DRY_RUN gate\nSafe simulation by default]
+    end
+    subgraph DATA[Supabase System of Record]
+        Customers[(customers)]
+        Transactions[(transactions)]
+        Interventions[(interventions)]
+        Audit[(audit_log)]
+        Metrics[(recovery_metrics)]
+    end
+    subgraph PROVIDERS[Optional Live Providers]
+        Twilio[Twilio WhatsApp]
+        Bolna[Bolna voice]
+        Vapi[Vapi fallback]
+    end
+    Browser --> Dashboard
+    Dashboard --> Charts
+    Dashboard --> Controls
+    Dashboard --> Metrics
+    Dashboard --> Transactions
+    Dashboard --> Audit
+    Controls --> Tracker
+    Tracker --> Transactions
+    Tracker --> Interventions
+    Tracker --> Audit
+    Pipeline --> Decision --> Rules
+    Rules --> Retry
+    Rules --> WhatsApp
+    Rules --> Voice
+    Retry --> DryRun
+    WhatsApp --> DryRun
+    Voice --> DryRun
+    DryRun --> Audit
+    Retry --> Interventions
+    WhatsApp --> Interventions
+    Voice --> Interventions
+    Decision --> Transactions
+    Decision --> Interventions
+    Decision --> Audit
+    Transactions --> Metrics
+    WhatsApp -. live .-> Twilio
+    Voice -. live .-> Bolna
+    Voice -. fallback .-> Vapi
+    classDef ui fill:#e7f3ff,stroke:#238cff,stroke-width:2px,color:#06245c
+    classDef core fill:#e9fbf4,stroke:#10a978,stroke-width:2px,color:#064d3b
+    classDef channel fill:#fff3df,stroke:#ff9d1f,stroke-width:2px,color:#704000
+    classDef data fill:#f0eaff,stroke:#7447ff,stroke-width:2px,color:#32127d
+    class Browser,Dashboard,Navigation,Charts,Controls ui
+    class Pipeline,Decision,Rules,Tracker core
+    class Retry,WhatsApp,Voice,DryRun channel
+    class Customers,Transactions,Interventions,Audit,Metrics data
+    </div></section>
+    <section><h2>Explainable Decision and Safety Flow</h2><div class="mermaid">
+flowchart LR
+    Failed[Failed payment] --> Fresh[Read current state]
+    Fresh --> Resolved{Still failed?}
+    Resolved -- No --> Skip[Skip: already resolved]
+    Resolved -- Yes --> Fraud{Fraud risk?}
+    Fraud -- Yes --> Manual[Manual review]
+    Fraud -- No --> Cap{Three contact attempts?}
+    Cap -- Yes --> Manual
+    Cap -- No --> Retryable{Retryable and first attempt?}
+    Retryable -- Yes --> Auto[Auto Retry]
+    Retryable -- No --> High{High value or repeat B2B?}
+    High -- Yes --> Call[Voice Call]
+    High -- No --> WhatsApp[WhatsApp]
+    Auto --> Recheck[Re-check safety rules]
+    Call --> Recheck
+    WhatsApp --> Recheck
+    Recheck --> Allowed{Allowed to execute?}
+    Allowed -- No --> Refused[Audit refusal reason]
+    Allowed -- Yes --> Execute[Execute or simulate]
+    Execute --> Record[Write outcome and audit event]
+    Record --> Paid{Payment recovered?}
+    Paid -- Yes --> Recovered[Mark recovered and credit tier]
+    Paid -- No --> Pending[Remain in audit trail]
+    classDef safe fill:#fff3df,stroke:#ff9d1f,stroke-width:2px
+    classDef action fill:#e7f3ff,stroke:#238cff,stroke-width:2px
+    classDef success fill:#e9fbf4,stroke:#10a978,stroke-width:2px
+    classDef stop fill:#ffecef,stroke:#db5570,stroke-width:2px
+    class Resolved,Fraud,Cap,Retryable,High,Allowed,Paid safe
+    class Auto,Call,WhatsApp,Execute,Record action
+    class Recovered,Pending success
+    class Skip,Manual,Refused stop
+    </div></section>
+    <section><h2>Architecture at a Glance</h2><div class="grid">
+      <div class="card"><b>1 · Detect</b><span>Failed transactions and customer context are read from Supabase.</span></div>
+      <div class="card"><b>2 · Decide</b><span>The seven-rule engine selects the cheapest appropriate recovery tier.</span></div>
+      <div class="card"><b>3 · Protect</b><span>Stopping rules re-check payment state, fraud, attempts, and call windows.</span></div>
+      <div class="card"><b>4 · Execute</b><span>Auto Retry, WhatsApp, or Voice Call runs through the DRY_RUN safety gate.</span></div>
+      <div class="card"><b>5 · Audit</b><span>Every decision, send, refusal, and recovery is appended to the audit trail.</span></div>
+      <div class="card"><b>6 · Recover</b><span>Successful payments update transaction status and credit the responsible tier.</span></div>
+    </div></section>
+    <footer>PayRecover AI · Explainable recovery for resilient payment operations</footer>
+  </main>
+</body>
+</html>

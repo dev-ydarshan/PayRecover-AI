@@ -1,0 +1,19 @@
+[theme]
+base = "light"
+primaryColor = "#1769FF"
+backgroundColor = "#F4F8FF"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#071A4A"
+linkColor = "#1769FF"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+headingFont = "Manrope:https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap"
+baseFontSize = 15
+baseFontWeight = 400
+headingFontSizes = ["44px", "28px", "20px", "17px", "15px", "13px"]
+headingFontWeights = [800, 800, 800, 700, 700, 600]
+baseRadius = "12px"
+buttonRadius = "12px"
+showWidgetBorder = true
+showSidebarBorder = false
+dataframeBorderColor = "#DCE7F7"
+dataframeHeaderBackgroundColor = "#EEF5FF"

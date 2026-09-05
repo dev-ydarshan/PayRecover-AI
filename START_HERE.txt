@@ -1,0 +1,20 @@
+PAYRECOVER AI — EXPLAINABLE REVENUE RECOVERY AGENT
+=========================
+
+This package contains the premium frontend implementation in dashboard.py.
+The recovery/database/backend logic remains in the original modules.
+
+IMPORTANT:
+- Do NOT commit .env.
+- Keep the .env from your working local project.
+- __pycache__ and .pyc are intentionally excluded.
+
+Mac quick start:
+1. Copy your existing working .env into this folder.
+2. Double-click RUN_BACKEND.command for the backend/pipeline terminal.
+3. Double-click RUN_FRONTEND.command for the frontend/dashboard terminal.
+4. Open http://localhost:8501
+
+If an old dashboard appears, stop the old Streamlit process first with:
+    pkill -f "streamlit run dashboard.py"
+Then launch RUN_FRONTEND.command from this folder.
