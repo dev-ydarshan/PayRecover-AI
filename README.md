@@ -206,8 +206,8 @@ No Twilio, Bolna or Razorpay account is needed to run this project.
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/<your-username>/ai-revenue-recovery.git
-cd ai-revenue-recovery
+git clone https://github.com/dev-ydarshan/PayRecover-AI.git
+cd PayRecover-AI
 
 python -m venv .venv
 # macOS / Linux:
