@@ -18,6 +18,13 @@ rule says no, and it writes down every decision, every send, and every refusal.
 On the sample batch of 40 failed payments (₹67,382 at risk), a single pass
 recovers **₹4,941 for ₹24.35 of outreach** — before a human contacts anyone.
 
+
+## System Architecture
+
+![PayRecover AI Architecture](architecture.png)
+
+
+
 ---
 
 ---
